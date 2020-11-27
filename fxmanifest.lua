@@ -1,5 +1,5 @@
 fx_version 'adamant'
-games 'gta5'
+game 'gta5'
 name 'Kilichi Hud V2'
 description 'Ks Hud Fivem'
 ui_page 'html/ui.html'
