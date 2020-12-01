@@ -1,5 +1,5 @@
 Config = {}
 Config['TickTime'] = 1000
 Config['Hud'] = true
-Config['HideMinimap'] = false
-Config['Stress'] = false
+Config['HideMinimap'] = true
+Config['Stress'] = true
