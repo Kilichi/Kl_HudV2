@@ -43,6 +43,12 @@ Citizen.CreateThread(function()
         else
             localStress = false
         end
+        local hudPosition
+        if IsPedSittingInAnyVehicle(PlayerPedId()) or not Config['HideMinimap'] then
+            hudPosition = 'right'
+        else
+            hudPosition = 'left'
+        end
         SendNUIMessage({
             hud = Config['Hud'];
             pauseMenu = IsPauseMenuActive();
@@ -51,7 +57,7 @@ Citizen.CreateThread(function()
             food = food;
             thirst = thirst;
             stress = localStress;
-            veh  = IsPedSittingInAnyVehicle(PlayerPedId());
+            hudPosition = hudPosition;
         })
     end
 end)
