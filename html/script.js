@@ -26,11 +26,10 @@ window.addEventListener('message', function (event) {
             $("#StatusHud").animate({"left": '0.7vh', "bottom":'0.7vh'},350 );
         }
         loadStats();
-        if (!data.stress) {
+        if (data.stress) {
+            $("#StatusHud #stress").show() 
+        }else if(!data.stress){
             $("#StatusHud #stress").hide()
-        }
-        if (data.stress){
-            $("#StatusHud #stress").show()
         }
     }
 });
