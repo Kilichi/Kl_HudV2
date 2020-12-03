@@ -20,9 +20,9 @@ window.addEventListener('message', function (event) {
             $('#healtlevel').html("0")
             $('#healtlevel').addClass('red')
         }
-        if(data.veh){
+        if(data.hudPosition == 'right'){
             $("#StatusHud").animate({"left": '28vh', "bottom":'3vh'},200 );
-        }else if(!data.veh){
+        }else{
             $("#StatusHud").animate({"left": '0.7vh', "bottom":'0.7vh'},350 );
         }
         loadStats();
