@@ -1,5 +1,5 @@
-$("#StatusHud #stress").hide()
 window.addEventListener('message', function (event) {
+    $("#StatusHud #stress").hide()
     let data = event.data
     loadStats = function(){
         $('#shieldval').html(Math.round(data.armour))
