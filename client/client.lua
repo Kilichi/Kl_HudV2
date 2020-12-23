@@ -9,8 +9,8 @@ end)
 -- Fin Config
 
 -- Principal Event
-RegisterNetEvent("Kl_Hud:onTick")
-AddEventHandler("Kl_Hud:onTick", function(status)
+RegisterNetEvent("Kl_Hud:updateStatus")
+AddEventHandler("Kl_Hud:updateStatus", function(status)
     TriggerEvent('esx_status:getStatus', 'hunger', function(status)
         food = status.val / 10000
     end)
@@ -43,12 +43,31 @@ Citizen.CreateThread(function()
         else
             localStress = false
         end
+		if (Config['PlayerID']) then
+            localPlayerID = playerid
+            playeridInput = GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1)))
+        else
+            localPlayerID = false
+        end
+        
         local hudPosition
         if IsPedSittingInAnyVehicle(PlayerPedId()) or not Config['HideMinimap'] then
             hudPosition = 'right'
         else
             hudPosition = 'left'
         end
+
+        local fuelPosition
+        local playerVeh = GetVehiclePedIsIn(PlayerPedId(), false)
+        if (Config['Fuel']) then
+        if IsPedSittingInAnyVehicle(PlayerPedId()) then
+            fuelPosition = 'right'
+            fuelEvent = GetVehicleFuelLevel(playerVeh);
+        else 
+            localPlayerID = false
+        end
+    end
+
         SendNUIMessage({
             hud = Config['Hud'];
             pauseMenu = IsPauseMenuActive();
@@ -57,7 +76,10 @@ Citizen.CreateThread(function()
             food = food;
             thirst = thirst;
             stress = localStress;
+            playerid = playeridInput;
+            fuel = fuelEvent;
             hudPosition = hudPosition;
+            fuelPosition = fuelPosition;
         })
     end
 end)
