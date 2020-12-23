@@ -62,7 +62,7 @@ Citizen.CreateThread(function()
         if (Config['Fuel']) then
         if IsPedSittingInAnyVehicle(PlayerPedId()) then
             fuelPosition = 'right'
-            fuelEvent = GetVehicleFuelLevel(playerVeh);
+            fuelEvent = GetVehicleFuelLevel(playerVeh); --REMOVES NO ENTITY SPAM (F8)
         else 
             localPlayerID = false
         end
