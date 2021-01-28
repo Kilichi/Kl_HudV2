@@ -1,11 +1,15 @@
 window.addEventListener('message', function (event) {
     $("#StatusHud #stress").hide()
+    $("#StatusHud #playerid").hide()
+    $("#StatusHud #fuel").hide()
     let data = event.data
     loadStats = function(){
         $('#shieldval').html(Math.round(data.armour))
         $('#hungerlevel').html(Math.round(data.food))
         $('#waterlevel').html(Math.round(data.thirst))
         $('#stresslevel').html(Math.round(data.stress))
+        $('#playeridlevel').html(Math.round(data.playerid))
+        $('#fuellevel').html(Math.round(data.fuel))
     }
     if (data.hud && !data.pauseMenu){
         $("body").show();
@@ -25,11 +29,21 @@ window.addEventListener('message', function (event) {
         }else{
             $("#StatusHud").animate({"left": '0.7vh', "bottom":'0.7vh'},350 );
         }
+        if(data.fuelPosition == 'right'){
+            $("#StatusHud #fuel").show() 
+        }else{
+            $("#StatusHud #fuel").hide()
+        }
         loadStats();
         if (data.stress) {
             $("#StatusHud #stress").show() 
         }else if(!data.stress){
             $("#StatusHud #stress").hide()
+        }
+		if (data.playerid) {
+            $("#StatusHud #playerid").show() 
+        }else if(!data.playerid){
+            $("#StatusHud #playerid").hide()
         }
     }
 });
